@@ -10,9 +10,9 @@
 @import StoreKit;
 
 #ifdef DEBUG
-    #define StoreURL [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"]
+    #define ValidStoreURL [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"]
 #else
-    #define StoreURL [NSURL URLWithString:@"https://buy.itunes.apple.com/verifyReceipt"]
+    #define ValidStoreURL [NSURL URLWithString:@"https://buy.itunes.apple.com/verifyReceipt"]
 #endif
 
 @interface ViewController () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
@@ -32,7 +32,9 @@
     [super viewDidLoad];
 
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [self xx:nil];
+//    [self xx:nil];
+    
+    [self valid:[[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"receipt" ofType:nil]]];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -89,7 +91,7 @@
         if (!requestData) { /* ... Handle error ... */ }
         
         // Create a POST request with the receipt data.
-        NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:StoreURL];
+        NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:ValidStoreURL];
         [storeRequest setHTTPMethod:@"POST"];
         [storeRequest setHTTPBody:requestData];
         [NSURLConnection sendAsynchronousRequest:storeRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -98,6 +100,29 @@
         }];
     }
 }
+
+- (void)valid:(NSData *)receipt
+{
+    NSError *error;
+    NSDictionary *requestContents = @{
+                                      @"receipt-data": [receipt base64EncodedStringWithOptions:0]
+                                      };
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents
+                                                          options:0
+                                                            error:&error];
+    
+    if (!requestData) { /* ... Handle error ... */ }
+    
+    // Create a POST request with the receipt data.
+    NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:ValidStoreURL];
+    [storeRequest setHTTPMethod:@"POST"];
+    [storeRequest setHTTPBody:requestData];
+    [NSURLConnection sendAsynchronousRequest:storeRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        id xx = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:NULL];
+        NSLog(@"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨%@¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨", xx);
+    }];
+}
+
 // Sent when transactions are removed from the queue (via finishTransaction:).
 - (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions NS_AVAILABLE_IOS(3_0);
 {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C3772921B80665200AB5DD3 /* Bundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3772911B80665200AB5DD3 /* Bundle.m */; };
+		2C8600851BABF9D000DF2E16 /* receipt in Resources */ = {isa = PBXBuildFile; fileRef = 2C8600841BABF9D000DF2E16 /* receipt */; };
 		2CE891021B7D85FF00E88441 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE891011B7D85FF00E88441 /* main.m */; };
 		2CE891051B7D85FF00E88441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE891041B7D85FF00E88441 /* AppDelegate.m */; };
 		2CE891081B7D85FF00E88441 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE891071B7D85FF00E88441 /* ViewController.m */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		2C3772901B80665200AB5DD3 /* Bundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bundle.h; sourceTree = "<group>"; };
 		2C3772911B80665200AB5DD3 /* Bundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bundle.m; sourceTree = "<group>"; };
+		2C8600841BABF9D000DF2E16 /* receipt */ = {isa = PBXFileReference; lastKnownFileType = file; path = receipt; sourceTree = "<group>"; };
 		2CE890FC1B7D85FF00E88441 /* IapPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IapPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE891001B7D85FF00E88441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE891011B7D85FF00E88441 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,10 +90,11 @@
 		2CE890FE1B7D85FF00E88441 /* IapPurchase */ = {
 			isa = PBXGroup;
 			children = (
-				2CE891031B7D85FF00E88441 /* AppDelegate.h */,
 				2C3772901B80665200AB5DD3 /* Bundle.h */,
 				2C3772911B80665200AB5DD3 /* Bundle.m */,
+				2CE891031B7D85FF00E88441 /* AppDelegate.h */,
 				2CE891041B7D85FF00E88441 /* AppDelegate.m */,
+				2C8600841BABF9D000DF2E16 /* receipt */,
 				2CE891061B7D85FF00E88441 /* ViewController.h */,
 				2CE891071B7D85FF00E88441 /* ViewController.m */,
 				2CE891091B7D85FF00E88441 /* Main.storyboard */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C8600851BABF9D000DF2E16 /* receipt in Resources */,
 				2CE8910B1B7D85FF00E88441 /* Main.storyboard in Resources */,
 				2CE891101B7D85FF00E88441 /* LaunchScreen.xib in Resources */,
 				2CE8910D1B7D85FF00E88441 /* Images.xcassets in Resources */,
